@@ -1,0 +1,5 @@
+---
+- hosts: localhost
+  remote_user: root
+  roles:
+  - { role: 'ansible-role-topbeat', ls_host: 'localhost:5044' }

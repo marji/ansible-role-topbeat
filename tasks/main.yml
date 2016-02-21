@@ -1,0 +1,26 @@
+---
+- name: Add Elastic Apt Key
+  apt_key: keyserver=pgp.mit.edu id=D88E42B4
+
+- name: Add Elastic Repo
+  apt_repository:
+    repo='deb https://packages.elastic.co/beats/apt stable main'
+    state=present
+
+- name: Install Topbeat
+  apt: name={{ topbeat_apt_package }} state={{ topbeat_apt_state }} update_cache=yes cache_valid_time=3600
+
+- name: Configure topbeat
+  template:
+    src=topbeat.yml.j2
+    dest=/etc/topbeat/topbeat.yml
+    owner=root
+    group=root
+    mode=0644
+  notify:
+    - Restart topbeat
+
+- name: Start and Enable topbeat Service
+  service: name=topbeat state=running enabled=yes
+
+# vim:ft=ansible:
