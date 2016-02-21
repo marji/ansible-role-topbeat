@@ -1,4 +1,4 @@
-# ansible-role-kibana
+# ansible-role-topbeat
 
 [![Build Status](https://travis-ci.org/marji/ansible-role-topbeat.svg?branch=master)](https://travis-ci.org/marji/ansible-role-topbeat)
 
